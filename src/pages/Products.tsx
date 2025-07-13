@@ -195,18 +195,20 @@ const Products: React.FC = () => {
     setDrawerOpen(open);
   };
 
-  const filterDrawer = (
+  const renderFilterDrawer = () => (
     <Box
       sx={{ 
-        width: 300, 
-        p: 4,
+        width: 380, 
+        p: 6,
         height: '100%',
         background: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,244,1) 100%)',
-        borderLeft: '1px solid rgba(27, 138, 90, 0.1)'
+        borderLeft: '1px solid rgba(27, 138, 90, 0.1)',
+        boxShadow: '0 0 20px rgba(0, 0, 0, 0.05)',
+        overflowY: 'auto'
       }}
       role="presentation"
     >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6, ml: 1 }}>
         <Typography variant="h6" sx={{ 
           color: '#1B8A5A', 
           fontWeight: 'bold',
@@ -234,26 +236,34 @@ const Products: React.FC = () => {
           <CloseIcon />
         </IconButton>
       </Box>
-      <Divider sx={{ mb: 3, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
+      <Divider sx={{ mb: 4, mt: 1, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
       
       <Typography variant="subtitle2" gutterBottom sx={{ 
         color: '#1E293B', 
         fontWeight: 'bold',
-        mb: 2,
-        fontSize: '1rem'
+        mb: 3.5,
+        ml: 1,
+        fontSize: '1.15rem'
       }}>
         Categories
       </Typography>
-      <FormControl fullWidth size="small" sx={{ mb: 3 }}>
+      <FormControl fullWidth sx={{ mb: 6, mx: 1 }}>
         <InputLabel>Select Category</InputLabel>
         <Select
           value={selectedCategory}
           label="Select Category"
           onChange={handleCategoryChange as any}
+          sx={{
+            borderRadius: 2,
+            '.MuiOutlinedInput-input': {
+              padding: '16px 14px',
+              fontSize: '1.05rem'
+            }
+          }}
         >
-          <MenuItem value="">All Categories</MenuItem>
+          <MenuItem value="" sx={{ py: 1.5, fontSize: '1.05rem' }}>All Categories</MenuItem>
           {categories.map((category) => (
-            <MenuItem key={category.id} value={category.id}>
+            <MenuItem key={category.id} value={category.id} sx={{ py: 1.5, fontSize: '1.05rem' }}>
               {category.name}
             </MenuItem>
           ))}
@@ -263,12 +273,13 @@ const Products: React.FC = () => {
       <Typography variant="subtitle2" gutterBottom sx={{ 
         color: '#1E293B', 
         fontWeight: 'bold',
-        mb: 2,
-        fontSize: '1rem'
+        mb: 3.5,
+        ml: 1,
+        fontSize: '1.15rem'
       }}>
         Price Range
       </Typography>
-      <Box sx={{ px: 1, mb: 3 }}>
+      <Box sx={{ px: 3, mx: 1, mb: 6 }}>
         <Slider
           value={priceRange}
           onChange={handlePriceChange}
@@ -278,67 +289,85 @@ const Products: React.FC = () => {
           step={10}
           sx={{
             color: '#1B8A5A',
+            height: 8,
             '& .MuiSlider-thumb': {
+              width: 24,
+              height: 24,
               '&:hover, &.Mui-focusVisible': {
-                boxShadow: '0 0 0 8px rgba(27, 138, 90, 0.16)'
+                boxShadow: '0 0 0 10px rgba(27, 138, 90, 0.16)'
               },
               '&.Mui-active': {
-                boxShadow: '0 0 0 12px rgba(27, 138, 90, 0.16)'
+                boxShadow: '0 0 0 14px rgba(27, 138, 90, 0.16)'
               }
             },
             '& .MuiSlider-rail': {
-              backgroundColor: 'rgba(211, 47, 47, 0.2)'
+              backgroundColor: 'rgba(211, 47, 47, 0.2)',
+              height: 8
             }
           }}
         />
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography variant="body2">${priceRange[0]}</Typography>
-          <Typography variant="body2">${priceRange[1]}</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+          <Typography variant="body1" sx={{ fontWeight: 500, fontSize: '1rem' }}>${priceRange[0]}</Typography>
+          <Typography variant="body1" sx={{ fontWeight: 500, fontSize: '1rem' }}>${priceRange[1]}</Typography>
         </Box>
       </Box>
       
       <Typography variant="subtitle2" gutterBottom sx={{ 
         color: '#1E293B', 
         fontWeight: 'bold',
-        mb: 2,
-        fontSize: '1rem'
+        mb: 3.5,
+        ml: 1,
+        fontSize: '1.15rem'
       }}>
         Sort By
       </Typography>
-      <FormControl fullWidth size="small" sx={{ mb: 3 }}>
+      <FormControl fullWidth sx={{ mb: 6, mx: 1 }}>
         <InputLabel>Sort By</InputLabel>
         <Select
           value={sortBy}
           label="Sort By"
           onChange={handleSortChange as any}
+          sx={{
+            borderRadius: 2,
+            '.MuiOutlinedInput-input': {
+              padding: '16px 14px',
+              fontSize: '1.05rem'
+            }
+          }}
         >
-          <MenuItem value="newest">Newest</MenuItem>
-          <MenuItem value="price-low">Price: Low to High</MenuItem>
-          <MenuItem value="price-high">Price: High to Low</MenuItem>
-          <MenuItem value="name-asc">Name: A to Z</MenuItem>
-          <MenuItem value="name-desc">Name: Z to A</MenuItem>
+          <MenuItem value="newest" sx={{ py: 1.5, fontSize: '1.05rem' }}>Newest</MenuItem>
+          <MenuItem value="price-low" sx={{ py: 1.5, fontSize: '1.05rem' }}>Price: Low to High</MenuItem>
+          <MenuItem value="price-high" sx={{ py: 1.5, fontSize: '1.05rem' }}>Price: High to Low</MenuItem>
+          <MenuItem value="name-asc" sx={{ py: 1.5, fontSize: '1.05rem' }}>Name: A to Z</MenuItem>
+          <MenuItem value="name-desc" sx={{ py: 1.5, fontSize: '1.05rem' }}>Name: Z to A</MenuItem>
         </Select>
       </FormControl>
       
-      <Button 
-        variant="outlined" 
-        fullWidth 
-        onClick={handleClearFilters}
-        sx={{ 
-          mt: 3,
-          py: 1.2,
-          borderColor: '#D32F2F',
-          color: '#D32F2F',
-          borderRadius: 1.5,
-          fontWeight: 'medium',
-          '&:hover': {
-            borderColor: '#B71C1C',
-            backgroundColor: 'rgba(211, 47, 47, 0.04)'
-          }
-        }}
+      <Box sx={{ px: 1, mt: 2 }}>
+        <Button 
+          variant="outlined" 
+          fullWidth 
+          onClick={handleClearFilters}
+          sx={{ 
+            mt: 6,
+            mb: 3,
+            py: 2,
+            borderColor: '#D32F2F',
+            color: '#D32F2F',
+            borderRadius: 2,
+            fontSize: '1.05rem',
+            fontWeight: 'medium',
+            boxShadow: '0 2px 4px rgba(211, 47, 47, 0.1)',
+            '&:hover': {
+              borderColor: '#B71C1C',
+              backgroundColor: 'rgba(211, 47, 47, 0.04)',
+              boxShadow: '0 4px 8px rgba(211, 47, 47, 0.15)'
+            }
+          }}
       >
         Clear All Filters
-      </Button>
+        </Button>
+      </Box>
     </Box>
   );
 
@@ -379,12 +408,14 @@ const Products: React.FC = () => {
         {!isMobile && (
           <GridItem xs={12} md={3}>
             <Box sx={{ 
-              p: 3, 
+              p: 4, 
               border: '1px solid rgba(27, 138, 90, 0.2)', 
               borderRadius: 2,
               boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
               position: 'relative',
               overflow: 'hidden',
+              mx: 1,
+              mb: 2,
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -412,7 +443,7 @@ const Products: React.FC = () => {
               }}>
                 Filters
               </Typography>
-              <Divider sx={{ mb: 3, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
+              <Divider sx={{ mb: 4, mt: 1, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
               
               <Typography variant="subtitle2" gutterBottom sx={{ 
                 color: '#1E293B', 
@@ -427,10 +458,17 @@ const Products: React.FC = () => {
                   value={selectedCategory}
                   label="Select Category"
                   onChange={handleCategoryChange as any}
+                  sx={{
+                    borderRadius: 2,
+                    '.MuiOutlinedInput-input': {
+                      padding: '14px 14px',
+                      fontSize: '1.05rem'
+                    }
+                  }}
                 >
-                  <MenuItem value="">All Categories</MenuItem>
+                  <MenuItem value="" sx={{ py: 1.5, fontSize: '1.05rem' }}>All Categories</MenuItem>
                   {categories.map((category) => (
-                    <MenuItem key={category.id} value={category.id}>
+                    <MenuItem key={category.id} value={category.id} sx={{ py: 1.5, fontSize: '1.05rem' }}>
                       {category.name}
                     </MenuItem>
                   ))}
@@ -521,7 +559,7 @@ const Products: React.FC = () => {
             display: 'flex', 
             justifyContent: 'space-between',
             alignItems: 'center',
-            mb: 3,
+            mb: 4,
             flexDirection: isMobile ? 'column' : 'row',
             gap: isMobile ? 2 : 0
           }}>
@@ -533,14 +571,17 @@ const Products: React.FC = () => {
               onChange={handleSearchChange}
               sx={{
                 '& .MuiOutlinedInput-root': {
-                  borderRadius: 1.5,
-                  py: 0.5,
+                  borderRadius: 2,
+                  py: 1.2,
                   '&:hover fieldset': {
                     borderColor: 'rgba(27, 138, 90, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
                     borderColor: '#1B8A5A',
                   },
+                },
+                '& .MuiInputBase-input': {
+                  fontSize: '1.05rem'
                 }
               }}
               InputProps={{
@@ -562,9 +603,10 @@ const Products: React.FC = () => {
                     display: { xs: 'flex', md: 'none' },
                     borderColor: '#1B8A5A',
                     color: '#1B8A5A',
-                    py: 1,
-                    px: 2,
-                    borderRadius: 1.5,
+                    py: 1.5,
+                    px: 3,
+                    borderRadius: 2,
+                    fontSize: '1rem',
                     '&:hover': {
                       borderColor: '#006837',
                       backgroundColor: 'rgba(27, 138, 90, 0.04)'
@@ -585,8 +627,8 @@ const Products: React.FC = () => {
           
           {/* Active filters */}
           {(searchTerm || selectedCategory || priceRange[0] > 0 || priceRange[1] < 1000) && (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 4 }}>
-              <Typography variant="body2" sx={{ mr: 1, display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 6 }}>
+              <Typography variant="body1" sx={{ mr: 2, display: 'flex', alignItems: 'center', fontWeight: 500, fontSize: '1.05rem' }}>
                 Active Filters:
               </Typography>
               
@@ -682,7 +724,7 @@ const Products: React.FC = () => {
           
           {/* Products grid */}
           {loading ? (
-            <GridContainer spacing={3}>
+            <GridContainer spacing={4}>
               {[...Array(8)].map((_, index) => (
                 <GridItem xs={12} sm={6} md={4} lg={3} key={index}>
                   <ProductCardSkeleton />
@@ -691,7 +733,7 @@ const Products: React.FC = () => {
             </GridContainer>
           ) : paginatedProducts.length > 0 ? (
             <>
-              <GridContainer spacing={3}>
+              <GridContainer spacing={4}>
                 {paginatedProducts.map((product) => (
                   <GridItem xs={12} sm={6} md={4} lg={3} key={product.id}>
                     <ProductCard product={product} />
@@ -701,7 +743,7 @@ const Products: React.FC = () => {
               
               {/* Pagination */}
               {totalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6, mb: 3 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8, mb: 5 }}>
                   <Pagination 
                     count={totalPages} 
                     page={page} 
@@ -711,9 +753,10 @@ const Products: React.FC = () => {
                     sx={{
                       '& .MuiPaginationItem-root': {
                         color: '#1E293B',
-                        margin: '0 4px',
-                        minWidth: '40px',
-                        height: '40px',
+                        margin: '0 6px',
+                        minWidth: '48px',
+                        height: '48px',
+                        fontSize: '1.1rem',
                         '&.Mui-selected': {
                           backgroundColor: '#1B8A5A',
                           color: '#FFFFFF',
@@ -745,7 +788,7 @@ const Products: React.FC = () => {
         open={drawerOpen}
         onClose={toggleDrawer(false)}
       >
-        {filterDrawer}
+        {renderFilterDrawer()}
       </Drawer>
     </>
   );
