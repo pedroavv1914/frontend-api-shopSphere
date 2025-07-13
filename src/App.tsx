@@ -9,12 +9,12 @@ import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 
 // Lazy load pages for better performance
-const Home = lazy(() => import('./pages/Home'));
-const Products = lazy(() => import('./pages/Products'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
-const Cart = lazy(() => import('./pages/Cart'));
-const Login = lazy(() => import('./pages/Login'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Home = lazy(() => import('./pages').then(module => ({ default: module.Home })));
+const Products = lazy(() => import('./pages').then(module => ({ default: module.Products })));
+const ProductDetail = lazy(() => import('./pages').then(module => ({ default: module.ProductDetail })));
+const Cart = lazy(() => import('./pages').then(module => ({ default: module.Cart })));
+const Login = lazy(() => import('./pages').then(module => ({ default: module.Login })));
+const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
 // Create theme
 const theme = createTheme({
