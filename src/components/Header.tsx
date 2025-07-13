@@ -28,7 +28,7 @@ import {
   ExitToApp,
   Login
 } from '@mui/icons-material';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, To } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
     >
       <List>
         {menuItems.map((item) => (
-          <ListItem button key={item.text} component={RouterLink} to={item.path}>
+          <ListItem key={item.text} component={RouterLink} to={item.path} sx={{ cursor: 'pointer' }}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
@@ -99,18 +99,33 @@ const Header: React.FC = () => {
       </List>
       <Divider />
       <List>
-        {authMenuItems.map((item) => (
-          <ListItem 
-            button 
-            key={item.text} 
-            component={item.path ? RouterLink : 'div'}
-            to={item.path}
-            onClick={item.onClick}
-          >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
-        ))}
+        {authMenuItems.map((item) => {
+          if (item.path) {
+            return (
+              <ListItem 
+                key={item.text} 
+                component={RouterLink}
+                to={item.path}
+                sx={{ cursor: 'pointer' }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            );
+          } else {
+            return (
+              <ListItem 
+                key={item.text} 
+                component="div"
+                onClick={item.onClick}
+                sx={{ cursor: 'pointer' }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            );
+          }
+        })}
       </List>
     </Box>
   );
