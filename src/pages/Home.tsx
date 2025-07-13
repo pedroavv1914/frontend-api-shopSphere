@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { 
   Box, 
   Typography, 
@@ -27,49 +27,49 @@ const Home: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        // Get all products and take the first 8 as featured
-        const productsResponse = await api.get<Product[]>('/products');
-        setFeaturedProducts(productsResponse.data.slice(0, 8));
-        
-        // Get all categories
-        const categoriesResponse = await api.get<Category[]>('/categories');
-        setCategories(categoriesResponse.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      // Get all products and take the first 8 as featured
+      const productsResponse = await api.get<Product[]>('/products');
+      setFeaturedProducts(productsResponse.data.slice(0, 8));
+      
+      // Get all categories
+      const categoriesResponse = await api.get<Category[]>('/categories');
+      setCategories(categoriesResponse.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const features = [
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const features = useMemo(() => [
     {
       icon: <ShoppingBag fontSize="large" />,
-      title: 'Wide Selection',
-      description: 'Thousands of products across multiple categories'
+      title: 'Quality Products',
+      description: 'Curated selection of high-quality items'
     },
     {
       icon: <LocalShipping fontSize="large" />,
-      title: 'Fast Delivery',
-      description: 'Quick and reliable shipping options'
+      title: 'Fast Shipping',
+      description: 'Quick delivery to your doorstep'
     },
     {
       icon: <Security fontSize="large" />,
       title: 'Secure Payments',
-      description: 'Safe and protected transaction processing'
+      description: 'Safe and encrypted transactions'
     },
     {
       icon: <Support fontSize="large" />,
       title: '24/7 Support',
-      description: 'Customer service available around the clock'
+      description: 'Customer service always available'
     }
-  ];
+  ], []);
 
   return (
     <>

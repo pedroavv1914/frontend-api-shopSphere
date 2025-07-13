@@ -18,6 +18,7 @@ export interface Product {
   imageUrl?: string;
   categoryId: number;
   category?: Category;
+  rating?: number;
 }
 
 export interface CartItem {

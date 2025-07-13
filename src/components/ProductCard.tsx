@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { 
   Card, 
-  CardMedia, 
   CardContent, 
   CardActions, 
   Typography, 
@@ -14,6 +13,8 @@ import {
   Alert,
   Skeleton
 } from '@mui/material';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { AddShoppingCart, Favorite, FavoriteBorder } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Product } from '../types';
@@ -23,7 +24,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
   const { addToCart } = useCart();
   const [favorite, setFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -67,13 +68,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         }}
       >
         <Box sx={{ position: 'relative' }}>
-          <CardMedia
-            component="img"
-            height="200"
-            image={imageUrl}
-            alt={product.name}
-            sx={{ objectFit: 'cover' }}
-          />
+          <Box sx={{ height: 200, overflow: 'hidden', position: 'relative' }}>
+            <LazyLoadImage
+              alt={product.name}
+              height={200}
+              src={imageUrl}
+              width="100%"
+              effect="blur"
+              style={{ objectFit: 'cover' }}
+              placeholder={<Skeleton variant="rectangular" width="100%" height={200} />}
+            />
+          </Box>
           <IconButton
             sx={{
               position: 'absolute',
@@ -100,64 +105,83 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </Box>
         
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h6" component="div" noWrap>
+        <CardContent sx={{ flexGrow: 1, pt: 2 }}>
+          <Typography 
+            variant="h6" 
+            component={RouterLink} 
+            to={`/products/${product.id}`}
+            sx={{ 
+              textDecoration: 'none', 
+              color: 'inherit',
+              '&:hover': {
+                color: 'primary.main',
+              },
+              display: 'block',
+              mb: 1,
+              fontWeight: 'bold',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap'
+            }}
+          >
             {product.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            mb: 1
-          }}>
-            {product.description}
-          </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-            <Rating value={4.5} precision={0.5} size="small" readOnly />
+            <Rating value={product.rating || 0} precision={0.5} readOnly size="small" />
             <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-              (24)
+              ({product.rating || 0})
             </Typography>
           </Box>
-          <Typography variant="body2" color="text.secondary">
-            Category: {product.category?.name || 'Uncategorized'}
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+            {product.category?.name || 'Uncategorized'}
+          </Typography>
+          <Typography 
+            variant="body2" 
+            color="text.secondary"
+            sx={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              mb: 2,
+              height: '40px'
+            }}
+          >
+            {product.description}
           </Typography>
         </CardContent>
         
-        <CardActions sx={{ justifyContent: 'space-between', p: 2 }}>
+        <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
           <Button 
-            size="small" 
-            component={RouterLink} 
-            to={`/products/${product.id}`}
-            variant="outlined"
-          >
-            View Details
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
+            variant="contained" 
+            color="primary" 
             startIcon={<AddShoppingCart />}
             onClick={handleAddToCart}
             disabled={loading}
+            size="small"
           >
             Add to Cart
+          </Button>
+          <Button 
+            variant="outlined" 
+            size="small" 
+            component={RouterLink} 
+            to={`/products/${product.id}`}
+          >
+            Details
           </Button>
         </CardActions>
       </Card>
       
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      >
+      <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
           {product.name} added to cart!
         </Alert>
       </Snackbar>
     </>
   );
-};
+});
 
 export const ProductCardSkeleton: React.FC = () => {
   return (
