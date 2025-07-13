@@ -8,20 +8,33 @@ const Footer: React.FC = () => {
   return (
     <Box
       sx={{
-        bgcolor: 'background.paper',
-        color: 'text.primary',
+        bgcolor: '#FFFFFF',
+        color: '#1E293B',
         py: 8,
         mt: 'auto',
-        borderTop: '1px solid',
-        borderColor: 'divider',
+        borderTop: '3px solid',
+        borderColor: '#1B8A5A',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '3px',
+          background: 'linear-gradient(to right, #1B8A5A 33%, #FFFFFF 33%, #FFFFFF 66%, #D32F2F 66%)',
+          display: { xs: 'none', md: 'block' }
+        }
       }}
       component="footer"
     >
       <Container maxWidth="lg">
         <GridContainer spacing={4}>
           <GridItem xs={12} sm={4}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main', mb: 2 }}>
-              🛍️ ShopSphere
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 2, display: 'flex', alignItems: 'center' }}>
+              <Box component="span" sx={{ color: '#1B8A5A', mr: 1 }}>🛍️</Box>
+              <Box component="span" sx={{ color: '#1B8A5A' }}>Shop</Box>
+              <Box component="span" sx={{ color: '#D32F2F' }}>Sphere</Box>
             </Typography>
             <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 3, color: 'text.secondary', maxWidth: '90%' }}>
               Your one-stop destination for quality products at affordable prices.
@@ -29,41 +42,53 @@ const Footer: React.FC = () => {
             </Typography>
             <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
               <IconButton 
-                color="primary" 
                 aria-label="Facebook"
                 sx={{ 
-                  backgroundColor: 'rgba(0,0,0,0.04)', 
-                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                  backgroundColor: 'rgba(27, 138, 90, 0.08)', 
+                  color: '#1B8A5A',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(27, 138, 90, 0.15)',
+                    color: '#006837'
+                  } 
                 }}
               >
                 <Facebook fontSize="small" />
               </IconButton>
               <IconButton 
-                color="primary" 
                 aria-label="Twitter"
                 sx={{ 
-                  backgroundColor: 'rgba(0,0,0,0.04)', 
-                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                  backgroundColor: 'rgba(27, 138, 90, 0.08)', 
+                  color: '#1B8A5A',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(27, 138, 90, 0.15)',
+                    color: '#006837'
+                  } 
                 }}
               >
                 <Twitter fontSize="small" />
               </IconButton>
               <IconButton 
-                color="primary" 
                 aria-label="Instagram"
                 sx={{ 
-                  backgroundColor: 'rgba(0,0,0,0.04)', 
-                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                  backgroundColor: 'rgba(211, 47, 47, 0.08)', 
+                  color: '#D32F2F',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(211, 47, 47, 0.15)',
+                    color: '#9A0007'
+                  } 
                 }}
               >
                 <Instagram fontSize="small" />
               </IconButton>
               <IconButton 
-                color="primary" 
                 aria-label="LinkedIn"
                 sx={{ 
-                  backgroundColor: 'rgba(0,0,0,0.04)', 
-                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                  backgroundColor: 'rgba(211, 47, 47, 0.08)', 
+                  color: '#D32F2F',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(211, 47, 47, 0.15)',
+                    color: '#9A0007'
+                  } 
                 }}
               >
                 <LinkedIn fontSize="small" />

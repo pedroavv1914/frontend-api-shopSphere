@@ -62,9 +62,11 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
           flexDirection: 'column',
           transition: 'all 0.3s ease',
           border: '1px solid rgba(0,0,0,0.05)',
+          backgroundColor: '#FFFFFF',
           '&:hover': {
             transform: 'translateY(-8px)',
             boxShadow: '0 16px 32px rgba(0,0,0,0.12)',
+            borderTop: '3px solid #1B8A5A',
           }
         }}
       >
@@ -168,7 +170,11 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
             sx={{ 
               minWidth: '120px',
               fontWeight: 600,
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              boxShadow: '0 4px 8px rgba(27, 138, 90, 0.2)',
+              backgroundColor: '#1B8A5A',
+              '&:hover': {
+                backgroundColor: '#006837',
+              }
             }}
           >
             Add to Cart
@@ -181,6 +187,13 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
             sx={{ 
               minWidth: '100px',
               fontWeight: 600,
+              borderColor: '#D32F2F',
+              color: '#D32F2F',
+              '&:hover': {
+                borderColor: '#9A0007',
+                backgroundColor: 'rgba(211, 47, 47, 0.04)',
+                color: '#9A0007',
+              }
             }}
           >
             Details

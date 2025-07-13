@@ -16,19 +16,19 @@ const Cart = lazy(() => import('./pages').then(module => ({ default: module.Cart
 const Login = lazy(() => import('./pages').then(module => ({ default: module.Login })));
 const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
-// Create theme
+// Create theme - Verde, Branco e Vermelho (cores da bandeira italiana)
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2E5077', // Azul mais profissional
-      light: '#5E7DA7',
-      dark: '#1A365D',
+      main: '#1B8A5A', // Verde principal
+      light: '#4CAF7C',
+      dark: '#006837',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#D8315B', // Vermelho mais sofisticado
-      light: '#FF6B8B',
-      dark: '#A8102C',
+      main: '#D32F2F', // Vermelho principal
+      light: '#FF6659',
+      dark: '#9A0007',
       contrastText: '#FFFFFF',
     },
     background: {
@@ -40,6 +40,12 @@ const theme = createTheme({
       secondary: '#64748B',
     },
     divider: 'rgba(0, 0, 0, 0.08)',
+    error: {
+      main: '#D32F2F',
+    },
+    success: {
+      main: '#1B8A5A',
+    },
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',

@@ -136,10 +136,11 @@ const Header: React.FC = () => {
         position="sticky" 
         elevation={0}
         sx={{ 
-          backgroundColor: 'background.paper', 
-          color: 'text.primary',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
+          backgroundColor: '#FFFFFF', 
+          color: '#1E293B',
+          borderBottom: '3px solid',
+          borderColor: '#1B8A5A',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
         }}
       >
         <Toolbar sx={{ py: 1.5, px: { xs: 2, md: 4 } }}>
@@ -162,7 +163,7 @@ const Header: React.FC = () => {
             sx={{ 
               flexGrow: 1, 
               textDecoration: 'none', 
-              color: 'primary.main',
+              color: '#1B8A5A',
               fontWeight: 'bold',
               display: 'flex',
               alignItems: 'center',
@@ -170,7 +171,9 @@ const Header: React.FC = () => {
               fontSize: { xs: '1.25rem', md: '1.5rem' }
             }}
           >
-            🛍️ ShopSphere
+            <Box component="span" sx={{ color: '#1B8A5A', mr: 1 }}>🛍️</Box>
+            <Box component="span" sx={{ color: '#1B8A5A' }}>Shop</Box>
+            <Box component="span" sx={{ color: '#D32F2F' }}>Sphere</Box>
           </Typography>
 
           {!isMobile && (
@@ -185,14 +188,29 @@ const Header: React.FC = () => {
                     mx: 1.5, 
                     fontWeight: 500,
                     fontSize: '1rem',
-                    color: 'text.primary',
+                    color: '#1E293B',
                     '&:hover': {
-                      backgroundColor: 'rgba(0,0,0,0.04)',
-                      color: 'primary.main'
+                      backgroundColor: 'rgba(27, 138, 90, 0.08)',
+                      color: '#1B8A5A'
                     },
                     py: 1,
                     px: 2,
-                    borderRadius: 2
+                    borderRadius: 2,
+                    position: 'relative',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: 0,
+                      left: '50%',
+                      width: 0,
+                      height: '2px',
+                      backgroundColor: '#1B8A5A',
+                      transition: 'all 0.3s ease',
+                    },
+                    '&:hover::after': {
+                      width: '80%',
+                      left: '10%',
+                    }
                   }}
                 >
                   {item.text}
@@ -219,12 +237,13 @@ const Header: React.FC = () => {
             >
               <Badge 
                 badgeContent={totalItems} 
-                color="secondary"
                 sx={{
                   '& .MuiBadge-badge': {
                     fontWeight: 'bold',
                     minWidth: '18px',
-                    height: '18px'
+                    height: '18px',
+                    backgroundColor: '#D32F2F',
+                    color: '#FFFFFF'
                   }
                 }}
               >
