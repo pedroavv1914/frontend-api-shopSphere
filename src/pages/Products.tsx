@@ -478,13 +478,11 @@ const Products: React.FC = () => {
               <Typography variant="subtitle2" gutterBottom sx={{ 
                 color: '#1E293B', 
                 fontWeight: 'bold',
-                mb: 2.5,
-                ml: 1,
-                fontSize: '1.15rem'
+                mb: 1.5
               }}>
                 Price Range
               </Typography>
-              <Box sx={{ px: 2, mx: 1, mb: 4 }}>
+              <Box sx={{ px: 1, mb: 3 }}>
                 <Slider
                   value={priceRange}
                   onChange={handlePriceChange}
@@ -494,20 +492,16 @@ const Products: React.FC = () => {
                   step={10}
                   sx={{
                     color: '#1B8A5A',
-                    height: 8,
                     '& .MuiSlider-thumb': {
-                      width: 24,
-                      height: 24,
                       '&:hover, &.Mui-focusVisible': {
-                        boxShadow: '0 0 0 10px rgba(27, 138, 90, 0.16)'
+                        boxShadow: '0 0 0 8px rgba(27, 138, 90, 0.16)'
                       },
                       '&.Mui-active': {
-                        boxShadow: '0 0 0 14px rgba(27, 138, 90, 0.16)'
+                        boxShadow: '0 0 0 12px rgba(27, 138, 90, 0.16)'
                       }
                     },
                     '& .MuiSlider-rail': {
-                      backgroundColor: 'rgba(211, 47, 47, 0.2)',
-                      height: 8
+                      backgroundColor: 'rgba(211, 47, 47, 0.2)'
                     }
                   }}
                 />
@@ -729,20 +723,19 @@ const Products: React.FC = () => {
           )}
           
           {/* Products grid */}
-          <Box sx={{ px: { xs: 3, sm: 4, md: 6 }, py: 2 }}>
           {loading ? (
-            <GridContainer spacing={6}>
+            <GridContainer spacing={4}>
               {[...Array(8)].map((_, index) => (
-                <GridItem xs={12} sm={6} md={4} lg={3} key={index} sx={{ p: 2.5, mb: 2 }}>
+                <GridItem xs={12} sm={6} md={4} lg={3} key={index}>
                   <ProductCardSkeleton />
                 </GridItem>
               ))}
             </GridContainer>
           ) : paginatedProducts.length > 0 ? (
             <>
-              <GridContainer spacing={6}>
+              <GridContainer spacing={4}>
                 {paginatedProducts.map((product) => (
-                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id} sx={{ p: 2.5, mb: 2 }}>
+                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id}>
                     <ProductCard product={product} />
                   </GridItem>
                 ))}
@@ -786,7 +779,6 @@ const Products: React.FC = () => {
               No products found matching your criteria.
             </Typography>
           )}
-          </Box>
         </GridItem>
       </GridContainer>
       
