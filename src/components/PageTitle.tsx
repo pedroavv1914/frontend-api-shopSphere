@@ -61,7 +61,15 @@ const PageTitle: React.FC<PageTitleProps> = ({ title, subtitle, breadcrumbs, sx 
         gutterBottom
         sx={{ 
           fontWeight: 'bold',
-          color: 'primary.main'
+          color: '#006837',
+          display: 'inline-block',
+          backgroundColor: '#FFFFFF',
+          px: 4,
+          py: 1.5,
+          borderRadius: '4px',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+          position: 'relative',
+          zIndex: 1
         }}
       >
         {title}
