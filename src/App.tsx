@@ -19,6 +19,7 @@ const Signup = lazy(() => import('./pages').then(module => ({ default: module.Si
 // Importar diretamente dos arquivos em vez de usar o barril
 const Profile = lazy(() => import('./pages/Profile'));
 const Orders = lazy(() => import('./pages/Orders'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
 // Create theme - Verde, Branco e Vermelho (cores da bandeira italiana)
@@ -198,6 +199,7 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/orders" element={<Orders />} />
+                <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
