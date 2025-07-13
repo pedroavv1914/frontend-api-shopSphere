@@ -14,6 +14,7 @@ const Products = lazy(() => import('./pages').then(module => ({ default: module.
 const ProductDetail = lazy(() => import('./pages').then(module => ({ default: module.ProductDetail })));
 const Cart = lazy(() => import('./pages').then(module => ({ default: module.Cart })));
 const Login = lazy(() => import('./pages').then(module => ({ default: module.Login })));
+const Signup = lazy(() => import('./pages').then(module => ({ default: module.Signup })));
 const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
 // Create theme - Verde, Branco e Vermelho (cores da bandeira italiana)
@@ -190,6 +191,7 @@ function App() {
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

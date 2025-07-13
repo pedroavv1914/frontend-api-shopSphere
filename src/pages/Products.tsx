@@ -478,11 +478,13 @@ const Products: React.FC = () => {
               <Typography variant="subtitle2" gutterBottom sx={{ 
                 color: '#1E293B', 
                 fontWeight: 'bold',
-                mb: 1.5
+                mb: 2.5,
+                ml: 1,
+                fontSize: '1.15rem'
               }}>
                 Price Range
               </Typography>
-              <Box sx={{ px: 1, mb: 3 }}>
+              <Box sx={{ px: 2, mx: 1, mb: 4 }}>
                 <Slider
                   value={priceRange}
                   onChange={handlePriceChange}
@@ -492,16 +494,20 @@ const Products: React.FC = () => {
                   step={10}
                   sx={{
                     color: '#1B8A5A',
+                    height: 8,
                     '& .MuiSlider-thumb': {
+                      width: 24,
+                      height: 24,
                       '&:hover, &.Mui-focusVisible': {
-                        boxShadow: '0 0 0 8px rgba(27, 138, 90, 0.16)'
+                        boxShadow: '0 0 0 10px rgba(27, 138, 90, 0.16)'
                       },
                       '&.Mui-active': {
-                        boxShadow: '0 0 0 12px rgba(27, 138, 90, 0.16)'
+                        boxShadow: '0 0 0 14px rgba(27, 138, 90, 0.16)'
                       }
                     },
                     '& .MuiSlider-rail': {
-                      backgroundColor: 'rgba(211, 47, 47, 0.2)'
+                      backgroundColor: 'rgba(211, 47, 47, 0.2)',
+                      height: 8
                     }
                   }}
                 />
