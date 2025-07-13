@@ -187,7 +187,7 @@ function App() {
       <CssBaseline />
       <GlobalStyles styles={{
         body: {
-          backgroundColor: '#A5D6A7', // Verde mais visível
+          backgroundColor: '#F8F9FA', // Verde mais visível
           minHeight: '100vh'
         }
       }} />
