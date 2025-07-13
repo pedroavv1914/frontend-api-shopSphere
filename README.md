@@ -125,7 +125,7 @@ Design elements include:
 - Consistent iconography and visual hierarchy
 - Smooth animations and transitions
 
-## 👥 Contributing
+## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
