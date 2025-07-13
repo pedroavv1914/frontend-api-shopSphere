@@ -60,23 +60,24 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
           height: '100%', 
           display: 'flex', 
           flexDirection: 'column',
-          transition: 'transform 0.3s, box-shadow 0.3s',
+          transition: 'all 0.3s ease',
+          border: '1px solid rgba(0,0,0,0.05)',
           '&:hover': {
-            transform: 'translateY(-5px)',
-            boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
+            transform: 'translateY(-8px)',
+            boxShadow: '0 16px 32px rgba(0,0,0,0.12)',
           }
         }}
       >
         <Box sx={{ position: 'relative' }}>
-          <Box sx={{ height: 200, overflow: 'hidden', position: 'relative' }}>
+          <Box sx={{ height: 240, overflow: 'hidden', position: 'relative' }}>
             <LazyLoadImage
               alt={product.name}
-              height={200}
+              height={240}
               src={imageUrl}
               width="100%"
               effect="blur"
               style={{ objectFit: 'cover' }}
-              placeholder={<Skeleton variant="rectangular" width="100%" height={200} />}
+              placeholder={<Skeleton variant="rectangular" width="100%" height={240} />}
             />
           </Box>
           <IconButton
@@ -98,14 +99,18 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
             color="primary"
             sx={{
               position: 'absolute',
-              bottom: 8,
-              right: 8,
+              bottom: 12,
+              right: 12,
               fontWeight: 'bold',
+              fontSize: '0.9rem',
+              height: 32,
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
             }}
           />
         </Box>
         
-        <CardContent sx={{ flexGrow: 1, pt: 2 }}>
+        <CardContent sx={{ flexGrow: 1, pt: 3, px: 3, pb: 2 }}>
           <Typography 
             variant="h6" 
             component={RouterLink} 
@@ -152,22 +157,31 @@ const ProductCard: React.FC<ProductCardProps> = memo(({ product }) => {
           </Typography>
         </CardContent>
         
-        <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
+        <CardActions sx={{ justifyContent: 'space-between', px: 3, pb: 3, pt: 1 }}>
           <Button 
             variant="contained" 
             color="primary" 
             startIcon={<AddShoppingCart />}
             onClick={handleAddToCart}
             disabled={loading}
-            size="small"
+            size="medium"
+            sx={{ 
+              minWidth: '120px',
+              fontWeight: 600,
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            }}
           >
             Add to Cart
           </Button>
           <Button 
             variant="outlined" 
-            size="small" 
+            size="medium" 
             component={RouterLink} 
             to={`/products/${product.id}`}
+            sx={{ 
+              minWidth: '100px',
+              fontWeight: 600,
+            }}
           >
             Details
           </Button>

@@ -8,84 +8,169 @@ const Footer: React.FC = () => {
   return (
     <Box
       sx={{
-        bgcolor: '#1a237e',
-        color: 'white',
-        py: 6,
+        bgcolor: 'background.paper',
+        color: 'text.primary',
+        py: 8,
         mt: 'auto',
+        borderTop: '1px solid',
+        borderColor: 'divider',
       }}
       component="footer"
     >
       <Container maxWidth="lg">
         <GridContainer spacing={4}>
           <GridItem xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main', mb: 2 }}>
               🛍️ ShopSphere
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 3, color: 'text.secondary', maxWidth: '90%' }}>
               Your one-stop destination for quality products at affordable prices.
               Discover a world of shopping possibilities with ShopSphere.
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              <IconButton color="inherit" aria-label="Facebook">
-                <Facebook />
+            <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
+              <IconButton 
+                color="primary" 
+                aria-label="Facebook"
+                sx={{ 
+                  backgroundColor: 'rgba(0,0,0,0.04)', 
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                }}
+              >
+                <Facebook fontSize="small" />
               </IconButton>
-              <IconButton color="inherit" aria-label="Twitter">
-                <Twitter />
+              <IconButton 
+                color="primary" 
+                aria-label="Twitter"
+                sx={{ 
+                  backgroundColor: 'rgba(0,0,0,0.04)', 
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                }}
+              >
+                <Twitter fontSize="small" />
               </IconButton>
-              <IconButton color="inherit" aria-label="Instagram">
-                <Instagram />
+              <IconButton 
+                color="primary" 
+                aria-label="Instagram"
+                sx={{ 
+                  backgroundColor: 'rgba(0,0,0,0.04)', 
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                }}
+              >
+                <Instagram fontSize="small" />
               </IconButton>
-              <IconButton color="inherit" aria-label="LinkedIn">
-                <LinkedIn />
+              <IconButton 
+                color="primary" 
+                aria-label="LinkedIn"
+                sx={{ 
+                  backgroundColor: 'rgba(0,0,0,0.04)', 
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.08)' } 
+                }}
+              >
+                <LinkedIn fontSize="small" />
               </IconButton>
             </Box>
           </GridItem>
           
           <GridItem xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3, color: 'text.primary' }}>
               Quick Links
             </Typography>
-            <Box>
-              <Link component={RouterLink} to="/" color="inherit" sx={{ display: 'block', mb: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Link 
+                component={RouterLink} 
+                to="/" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'block', 
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' },
+                  transition: 'color 0.2s ease',
+                  fontWeight: 500
+                }}
+              >
                 Home
               </Link>
-              <Link component={RouterLink} to="/products" color="inherit" sx={{ display: 'block', mb: 1 }}>
+              <Link 
+                component={RouterLink} 
+                to="/products" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'block', 
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' },
+                  transition: 'color 0.2s ease',
+                  fontWeight: 500
+                }}
+              >
                 Products
               </Link>
-              <Link component={RouterLink} to="/cart" color="inherit" sx={{ display: 'block', mb: 1 }}>
+              <Link 
+                component={RouterLink} 
+                to="/cart" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'block', 
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' },
+                  transition: 'color 0.2s ease',
+                  fontWeight: 500
+                }}
+              >
                 Cart
               </Link>
-              <Link component={RouterLink} to="/about" color="inherit" sx={{ display: 'block', mb: 1 }}>
+              <Link 
+                component={RouterLink} 
+                to="/about" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'block', 
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' },
+                  transition: 'color 0.2s ease',
+                  fontWeight: 500
+                }}
+              >
                 About Us
               </Link>
-              <Link component={RouterLink} to="/contact" color="inherit" sx={{ display: 'block', mb: 1 }}>
+              <Link 
+                component={RouterLink} 
+                to="/contact" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'block', 
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' },
+                  transition: 'color 0.2s ease',
+                  fontWeight: 500
+                }}
+              >
                 Contact
               </Link>
             </Box>
           </GridItem>
           
           <GridItem xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mb: 3, color: 'text.primary' }}>
               Contact Us
             </Typography>
-            <Typography variant="body2" paragraph>
+            <Typography variant="body1" paragraph sx={{ color: 'text.secondary', lineHeight: 1.7, mb: 2 }}>
               123 Shopping Avenue
               <br />
               Retail District, RS 12345
               <br />
               Brazil
             </Typography>
-            <Typography variant="body2">
-              Email: <Link href="mailto:info@shopsphere.com" color="inherit">info@shopsphere.com</Link>
+            <Typography variant="body1" sx={{ color: 'text.secondary', mb: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
+              Email: <Link href="mailto:info@shopsphere.com" color="primary" sx={{ textDecoration: 'none', fontWeight: 500 }}>info@shopsphere.com</Link>
             </Typography>
-            <Typography variant="body2">
-              Phone: +55 (123) 456-7890
+            <Typography variant="body1" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 1 }}>
+              Phone: <Box component="span" sx={{ fontWeight: 500 }}>+55 (123) 456-7890</Box>
             </Typography>
           </GridItem>
         </GridContainer>
         
-        <Box mt={5}>
-          <Typography variant="body2" align="center">
+        <Box mt={8} pt={3} sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
+          <Typography variant="body2" align="center" sx={{ color: 'text.secondary' }}>
             {'© '}
             {new Date().getFullYear()}
             {' ShopSphere. All rights reserved.'}

@@ -79,13 +79,14 @@ const Home: React.FC = () => {
           position: 'relative',
           backgroundColor: 'grey.800',
           color: '#fff',
-          mb: 4,
+          mb: 8,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundImage: `url(https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)`,
-          borderRadius: 2,
-          overflow: 'hidden'
+          borderRadius: 3,
+          overflow: 'hidden',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
         }}
       >
         {/* Increase the priority of the hero background image */}
@@ -102,28 +103,42 @@ const Home: React.FC = () => {
         <Box
           sx={{
             position: 'relative',
-            p: { xs: 3, md: 6 },
+            p: { xs: 4, md: 8 },
             pr: { md: 0 },
-            minHeight: '500px',
+            minHeight: '600px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
+            maxWidth: { xs: '100%', md: '60%' },
           }}
         >
-          <Typography component="h1" variant="h3" color="inherit" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <Typography component="h1" variant="h2" color="inherit" gutterBottom sx={{ fontWeight: 'bold', textShadow: '0 2px 10px rgba(0,0,0,0.3)', mb: 3 }}>
             Welcome to ShopSphere
           </Typography>
-          <Typography variant="h5" color="inherit" paragraph>
+          <Typography variant="h5" color="inherit" paragraph sx={{ fontSize: '1.35rem', lineHeight: 1.6, mb: 4, textShadow: '0 1px 3px rgba(0,0,0,0.2)', maxWidth: '90%' }}>
             Discover a world of quality products at affordable prices.
             Your one-stop destination for all your shopping needs.
           </Typography>
-          <Box sx={{ mt: 4 }}>
+          <Box sx={{ mt: 6 }}>
             <Button 
               variant="contained" 
               size="large" 
               component={RouterLink} 
               to="/products"
-              sx={{ mr: 2, mb: { xs: 2, sm: 0 } }}
+              sx={{ 
+                mr: 3, 
+                mb: { xs: 2, sm: 0 },
+                py: 1.5,
+                px: 4,
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
+                '&:hover': {
+                  boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
+              }}
             >
               Shop Now
             </Button>
@@ -133,13 +148,19 @@ const Home: React.FC = () => {
               component={RouterLink} 
               to="/about"
               sx={{ 
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backgroundColor: 'rgba(255, 255, 255, 0.15)',
                 color: 'white',
                 borderColor: 'white',
+                py: 1.5,
+                px: 4,
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.25)',
                   borderColor: 'white',
-                }
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
               }}
             >
               Learn More
@@ -149,49 +170,95 @@ const Home: React.FC = () => {
       </Paper>
 
       {/* Features Section */}
-      <Box sx={{ py: 6, backgroundColor: '#f5f5f5', borderRadius: 2, mb: 6 }}>
-        <Container>
-          <Typography variant="h4" component="h2" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
-            Why Choose Us
-          </Typography>
-          <Typography variant="subtitle1" align="center" color="text.secondary" paragraph sx={{ mb: 6 }}>
-            We're committed to providing the best shopping experience
-          </Typography>
+      <Box sx={{ py: 10, backgroundColor: 'background.default', mb: 8, position: 'relative' }}>
+        <Container maxWidth="lg">
+          <Box sx={{ mb: 8, textAlign: 'center' }}>
+            <Typography 
+              variant="h3" 
+              component="h2" 
+              align="center" 
+              gutterBottom 
+              sx={{ 
+                fontWeight: 'bold',
+                position: 'relative',
+                display: 'inline-block',
+                mb: 3,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  width: '80px',
+                  height: '4px',
+                  backgroundColor: 'primary.main',
+                  bottom: '-12px',
+                  left: 'calc(50% - 40px)',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              Why Choose Us
+            </Typography>
+            <Typography 
+              variant="h6" 
+              align="center" 
+              color="text.secondary" 
+              sx={{ 
+                maxWidth: '700px', 
+                mx: 'auto',
+                mb: 2,
+                fontWeight: 'normal',
+                lineHeight: 1.6
+              }}
+            >
+              We're committed to providing the best shopping experience with premium quality products
+            </Typography>
+          </Box>
           
-          <GridContainer spacing={4}>
+          <GridContainer spacing={6}>
             {features.map((feature, index) => (
               <GridItem xs={12} sm={6} md={3} key={index}>
-                <Box
+                <Paper
+                  elevation={0}
                   sx={{
+                    p: 4,
+                    height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     textAlign: 'center',
+                    borderRadius: 3,
+                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(0,0,0,0.05)',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.08)',
+                      borderColor: 'transparent'
+                    }
                   }}
                 >
                   <Box
                     sx={{
-                      p: 2,
-                      backgroundColor: 'primary.main',
+                      p: 2.5,
+                      backgroundColor: 'primary.light',
                       color: 'white',
                       borderRadius: '50%',
-                      mb: 2,
+                      mb: 3,
                       display: 'flex',
-                      alignItems: 'center',
                       justifyContent: 'center',
-                      width: 70,
-                      height: 70,
+                      alignItems: 'center',
+                      boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+                      width: 80,
+                      height: 80,
                     }}
                   >
                     {feature.icon}
                   </Box>
-                  <Typography variant="h6" gutterBottom>
+                  <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 2 }}>
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.6 }}>
                     {feature.description}
                   </Typography>
-                </Box>
+                </Paper>
               </GridItem>
             ))}
           </GridContainer>

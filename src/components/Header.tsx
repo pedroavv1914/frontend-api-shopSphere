@@ -132,8 +132,17 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: '#1a237e' }}>
-        <Toolbar>
+      <AppBar 
+        position="sticky" 
+        elevation={0}
+        sx={{ 
+          backgroundColor: 'background.paper', 
+          color: 'text.primary',
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Toolbar sx={{ py: 1.5, px: { xs: 2, md: 4 } }}>
           {isMobile && (
             <IconButton
               edge="start"
@@ -147,16 +156,18 @@ const Header: React.FC = () => {
           )}
           
           <Typography 
-            variant="h6" 
+            variant="h5" 
             component={RouterLink} 
             to="/"
             sx={{ 
               flexGrow: 1, 
               textDecoration: 'none', 
-              color: 'inherit',
+              color: 'primary.main',
               fontWeight: 'bold',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              letterSpacing: '-0.5px',
+              fontSize: { xs: '1.25rem', md: '1.5rem' }
             }}
           >
             🛍️ ShopSphere
@@ -170,7 +181,19 @@ const Header: React.FC = () => {
                   color="inherit" 
                   component={RouterLink} 
                   to={item.path}
-                  sx={{ mx: 1 }}
+                  sx={{ 
+                    mx: 1.5, 
+                    fontWeight: 500,
+                    fontSize: '1rem',
+                    color: 'text.primary',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0,0,0,0.04)',
+                      color: 'primary.main'
+                    },
+                    py: 1,
+                    px: 2,
+                    borderRadius: 2
+                  }}
                 >
                   {item.text}
                 </Button>
@@ -178,15 +201,34 @@ const Header: React.FC = () => {
             </Box>
           )}
 
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
             <IconButton 
               color="inherit" 
               component={RouterLink} 
               to="/cart"
               aria-label="cart"
+              sx={{ 
+                ml: 1, 
+                backgroundColor: 'rgba(0,0,0,0.04)',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.08)'
+                },
+                width: 42,
+                height: 42
+              }}
             >
-              <Badge badgeContent={totalItems} color="error">
-                <ShoppingCartIcon />
+              <Badge 
+                badgeContent={totalItems} 
+                color="secondary"
+                sx={{
+                  '& .MuiBadge-badge': {
+                    fontWeight: 'bold',
+                    minWidth: '18px',
+                    height: '18px'
+                  }
+                }}
+              >
+                <ShoppingCartIcon fontSize="small" />
               </Badge>
             </IconButton>
 
