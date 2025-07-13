@@ -1,51 +1,102 @@
 // GridSystem.tsx
-// Este arquivo fornece componentes Grid compatíveis com MUI v7
+// Este arquivo fornece componentes Box compatíveis com MUI v7
 // Resolve os problemas de tipagem em todo o projeto
 
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Box, SxProps, Theme } from '@mui/material';
 
-// Interface estendida para incluir as propriedades de breakpoint do Grid
-interface GridExtendedProps {
+// Interface para as propriedades do Box com suporte a layout flexbox
+interface BoxFlexProps {
   children?: React.ReactNode;
   component?: React.ElementType;
-  container?: boolean;
-  item?: boolean;
-  xs?: number | boolean | 'auto';
-  sm?: number | boolean | 'auto';
-  md?: number | boolean | 'auto';
-  lg?: number | boolean | 'auto';
-  xl?: number | boolean | 'auto';
-  spacing?: number | string;
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+  // Propriedades de layout
+  display?: string;
+  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
   alignContent?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'space-between' | 'space-around';
-  sx?: any;
+  gap?: number | string;
+  p?: number | string;
+  px?: number | string;
+  py?: number | string;
+  m?: number | string;
+  mx?: number | string;
+  my?: number | string;
+  width?: string | number;
+  height?: string | number;
+  sx?: SxProps<Theme>;
   className?: string;
   style?: React.CSSProperties;
   key?: React.Key;
   [key: string]: any; // Para outras props que possam ser passadas
 }
 
-// Grid Container com component="div" pré-definido
-export const GridContainer: React.FC<GridExtendedProps> = ({ children, ...props }) => {
+// Converte propriedades antigas do Grid para propriedades do Box
+const convertGridPropsToBoxProps = (props: any) => {
+  const newProps: any = { ...props };
+  
+  // Remover propriedades obsoletas
+  delete newProps.container;
+  delete newProps.item;
+  
+  // Converter propriedades de breakpoint para width responsiva
+  if (newProps.xs !== undefined) {
+    delete newProps.xs;
+  }
+  
+  if (newProps.sm !== undefined) {
+    delete newProps.sm;
+  }
+  
+  if (newProps.md !== undefined) {
+    delete newProps.md;
+  }
+  
+  if (newProps.lg !== undefined) {
+    delete newProps.lg;
+  }
+  
+  if (newProps.xl !== undefined) {
+    delete newProps.xl;
+  }
+  
+  // Converter spacing para gap
+  if (newProps.spacing !== undefined) {
+    newProps.gap = newProps.spacing;
+    delete newProps.spacing;
+  }
+  
+  return newProps;
+};
+
+// Grid Container substituído por Box com display flex
+export const GridContainer: React.FC<BoxFlexProps> = ({ children, ...props }) => {
+  const boxProps = convertGridPropsToBoxProps(props);
   return (
-    <Grid component="div" container {...props}>
+    <Box 
+      component="div" 
+      display="flex" 
+      flexWrap="wrap"
+      {...boxProps}
+    >
       {children}
-    </Grid>
+    </Box>
   );
 };
 
-// Grid Item com component="div" pré-definido
-export const GridItem: React.FC<GridExtendedProps> = ({ children, ...props }) => {
+// Grid Item substituído por Box
+export const GridItem: React.FC<BoxFlexProps> = ({ children, ...props }) => {
+  const boxProps = convertGridPropsToBoxProps(props);
   return (
-    <Grid component="div" item {...props}>
+    <Box 
+      component="div"
+      {...boxProps}
+    >
       {children}
-    </Grid>
+    </Box>
   );
 };
 
-// Exporta o Grid como padrão para compatibilidade com código existente
-export default Grid;
+// Exporta o Box como padrão para compatibilidade com código existente
+export default Box;
