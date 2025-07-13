@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { GlobalStyles } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -38,7 +39,7 @@ const theme = createTheme({
       contrastText: '#FFFFFF',
     },
     background: {
-      default: '#F8F9FA',
+      default: '#B2DFDB', // Verde-azulado claro mais distinto
       paper: '#FFFFFF',
     },
     text: {
@@ -184,6 +185,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <GlobalStyles styles={{
+        body: {
+          backgroundColor: '#A5D6A7', // Verde mais visível
+          minHeight: '100vh'
+        }
+      }} />
       <AuthProvider>
         <CartProvider>
           <Router>
