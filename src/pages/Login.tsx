@@ -344,7 +344,7 @@ const Login: React.FC = () => {
                 Don't have an account?{' '}
                 <Link 
                   component={RouterLink} 
-                  to="/register"
+                  to="/Signup"
                   sx={{ 
                     color: '#1B8A5A',
                     fontWeight: 'bold',
