@@ -1,12 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import PageLoader from './components/PageLoader';
-import ScrollToTop from './components/ScrollToTop';
+import LoadingSpinner from './components/LoadingSpinner';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages').then(module => ({ default: module.Home })));
@@ -15,6 +16,8 @@ const ProductDetail = lazy(() => import('./pages').then(module => ({ default: mo
 const Cart = lazy(() => import('./pages').then(module => ({ default: module.Cart })));
 const Login = lazy(() => import('./pages').then(module => ({ default: module.Login })));
 const Signup = lazy(() => import('./pages').then(module => ({ default: module.Signup })));
+const Profile = lazy(() => import('./pages').then(module => ({ default: module.Profile })));
+const Orders = lazy(() => import('./pages').then(module => ({ default: module.Orders })));
 const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
 // Create theme - Verde, Branco e Vermelho (cores da bandeira italiana)
@@ -184,7 +187,7 @@ function App() {
           <Router>
             <ScrollToTop />
             <Header />
-            <Suspense fallback={<PageLoader />}>
+            <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
@@ -192,6 +195,8 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
