@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Container, Typography, Link, Grid, IconButton } from '@mui/material';
+import { Box, Container, Typography, Link, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
+import { GridContainer, GridItem } from './GridSystem';
 
 const Footer: React.FC = () => {
   return (
@@ -15,8 +16,8 @@ const Footer: React.FC = () => {
       component="footer"
     >
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
+        <GridContainer spacing={4}>
+          <GridItem xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
               🛍️ ShopSphere
             </Typography>
@@ -38,9 +39,9 @@ const Footer: React.FC = () => {
                 <LinkedIn />
               </IconButton>
             </Box>
-          </Grid>
+          </GridItem>
           
-          <Grid item xs={12} sm={4}>
+          <GridItem xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
@@ -61,9 +62,9 @@ const Footer: React.FC = () => {
                 Contact
               </Link>
             </Box>
-          </Grid>
+          </GridItem>
           
-          <Grid item xs={12} sm={4}>
+          <GridItem xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
               Contact Us
             </Typography>
@@ -80,8 +81,8 @@ const Footer: React.FC = () => {
             <Typography variant="body2">
               Phone: +55 (123) 456-7890
             </Typography>
-          </Grid>
-        </Grid>
+          </GridItem>
+        </GridContainer>
         
         <Box mt={5}>
           <Typography variant="body2" align="center">
