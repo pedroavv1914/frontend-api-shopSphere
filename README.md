@@ -1,46 +1,153 @@
-# Getting Started with Create React App
+# ShopSphere Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <img src="src/assets/logo.svg" alt="ShopSphere Logo" width="200" />
+  <h3>Modern E-Commerce Experience</h3>
+</div>
 
-## Available Scripts
+## 📋 Overview
 
-In the project directory, you can run:
+ShopSphere Frontend is a modern, responsive React application that provides an intuitive and engaging user interface for the ShopSphere e-commerce platform. Built with TypeScript and Material UI, it offers a seamless shopping experience with features like product browsing, cart management, user authentication, and order processing.
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Responsive Design**: Fully optimized for all devices from mobile to desktop
+- **User Authentication**: Secure login, registration, and profile management
+- **Product Catalog**: Browse products with filtering and search capabilities
+- **Shopping Cart**: Add, remove, and update items with real-time total calculation
+- **Checkout Process**: Streamlined payment flow with Stripe integration
+- **Order Management**: View and track order history and status
+- **Admin Dashboard**: Comprehensive tools for product and order management (admin users)
+- **Theme Customization**: Italian flag-inspired color scheme with green, white, and red accents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- **Core**: React 19 with TypeScript
+- **State Management**: React Context API
+- **UI Framework**: Material UI v7
+- **Routing**: React Router v7
+- **HTTP Client**: Axios
+- **Performance Optimization**: Code splitting, lazy loading, and image optimization
+- **Build Tool**: Create React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🏗️ Project Structure
 
-### `npm run build`
+```
+src/
+├── assets/          # Static assets like images and icons
+├── components/      # Reusable UI components
+├── contexts/        # React contexts for state management
+├── pages/           # Application pages/routes
+├── services/        # API services and external integrations
+├── types/           # TypeScript type definitions
+├── utils/           # Utility functions and helpers
+├── App.tsx          # Main application component
+└── index.tsx        # Application entry point
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js (v16 or later)
+- npm or yarn
+- ShopSphere Backend API running
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/shopsphere.git
+   cd shopsphere/frontend
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Create a `.env` file in the root directory with the following variables:
+   ```
+   REACT_APP_API_URL=http://localhost:5000/api
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Start the development server:
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧪 Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run the test suite with:
+
+```bash
+npm test
+# or
+yarn test
+```
+
+## 📦 Building for Production
+
+Create an optimized production build with:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+The build artifacts will be stored in the `build/` directory.
+
+## 🎨 UI/UX Design
+
+The application features a custom Material UI theme with:
+
+- Primary color: Green (#1B8A5A)
+- Secondary color: Red (#D32F2F)
+- Background: Light teal (#B2DFDB) and white
+- Custom typography with Inter font family
+- Elevated card design with subtle hover effects
+- Responsive layout with optimized mobile experience
+
+## 🔒 Authentication
+
+The application uses JWT-based authentication with tokens stored in localStorage. Protected routes require authentication, and certain features are restricted based on user roles (customer vs admin).
+
+## 🔄 State Management
+
+State management is handled through React Context API with two main contexts:
+
+- **AuthContext**: Manages user authentication state, login/logout, and profile updates
+- **CartContext**: Manages shopping cart state, item addition/removal, and checkout
+
+## 🌐 API Integration
+
+The frontend communicates with the ShopSphere Backend API using Axios. API services are organized by resource type (products, categories, orders, etc.) with proper error handling and loading states.
+
+## 📱 Responsive Design
+
+The application is fully responsive with:
+
+- Flexible grid system for layout
+- Responsive navigation with mobile drawer menu
+- Adaptive product cards and detail views
+- Touch-friendly UI elements for mobile users
+
+## 🛡️ Best Practices
+
+- TypeScript for type safety
+- Component-based architecture
+- Lazy loading for improved performance
+- Error boundaries for graceful error handling
+- Consistent styling with Material UI theme
+- Secure authentication flow
+
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
