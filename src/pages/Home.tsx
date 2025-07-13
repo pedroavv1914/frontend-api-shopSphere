@@ -479,21 +479,25 @@ const Home: React.FC = () => {
         </Typography>
         
         {loading ? (
-          <GridContainer spacing={3}>
-            {[...Array(4)].map((_, index) => (
-              <GridItem xs={12} sm={6} md={3} key={index}>
-                <ProductCardSkeleton />
-              </GridItem>
-            ))}
-          </GridContainer>
+          <Box sx={{ px: { xs: 3, sm: 4, md: 6 }, py: 2 }}>
+            <GridContainer spacing={6}>
+              {[...Array(4)].map((_, index) => (
+                <GridItem xs={12} sm={6} md={3} key={index} sx={{ p: 2.5, mb: 2 }}>
+                  <ProductCardSkeleton />
+                </GridItem>
+              ))}
+            </GridContainer>
+          </Box>
         ) : featuredProducts.length > 0 ? (
-          <GridContainer spacing={3}>
-            {featuredProducts.map((product) => (
-              <GridItem xs={12} sm={6} md={4} key={product.id}>
-                <ProductCard product={product} />
-              </GridItem>
-            ))}
-          </GridContainer>
+          <Box sx={{ px: { xs: 3, sm: 4, md: 6 }, py: 2 }}>
+            <GridContainer spacing={6}>
+              {featuredProducts.map((product) => (
+                <GridItem xs={12} sm={6} md={4} key={product.id} sx={{ p: 2.5, mb: 2 }}>
+                  <ProductCard product={product} />
+                </GridItem>
+              ))}
+            </GridContainer>
+          </Box>
         ) : (
           <Typography variant="body1" color="text.secondary" align="center" sx={{ py: 4 }}>
             No products available at the moment.
