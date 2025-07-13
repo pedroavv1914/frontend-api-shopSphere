@@ -730,18 +730,18 @@ const Products: React.FC = () => {
           
           {/* Products grid */}
           {loading ? (
-            <GridContainer spacing={4}>
+            <GridContainer spacing={4} sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
               {[...Array(8)].map((_, index) => (
-                <GridItem xs={12} sm={6} md={4} lg={3} key={index}>
+                <GridItem xs={12} sm={6} md={4} lg={3} key={index} sx={{ p: 1.5 }}>
                   <ProductCardSkeleton />
                 </GridItem>
               ))}
             </GridContainer>
           ) : paginatedProducts.length > 0 ? (
             <>
-              <GridContainer spacing={4}>
+              <GridContainer spacing={4} sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
                 {paginatedProducts.map((product) => (
-                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id}>
+                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id} sx={{ p: 1.5 }}>
                     <ProductCard product={product} />
                   </GridItem>
                 ))}
