@@ -16,8 +16,9 @@ const ProductDetail = lazy(() => import('./pages').then(module => ({ default: mo
 const Cart = lazy(() => import('./pages').then(module => ({ default: module.Cart })));
 const Login = lazy(() => import('./pages').then(module => ({ default: module.Login })));
 const Signup = lazy(() => import('./pages').then(module => ({ default: module.Signup })));
-const Profile = lazy(() => import('./pages').then(module => ({ default: module.Profile })));
-const Orders = lazy(() => import('./pages').then(module => ({ default: module.Orders })));
+// Importar diretamente dos arquivos em vez de usar o barril
+const Profile = lazy(() => import('./pages/Profile'));
+const Orders = lazy(() => import('./pages/Orders'));
 const NotFound = lazy(() => import('./pages').then(module => ({ default: module.NotFound })));
 
 // Create theme - Verde, Branco e Vermelho (cores da bandeira italiana)
