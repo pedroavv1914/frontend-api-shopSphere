@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Breadcrumbs, Link, Divider } from '@mui/material';
+import { Box, Typography, Breadcrumbs, Link, Divider, SxProps, Theme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { NavigateNext as NavigateNextIcon } from '@mui/icons-material';
 
@@ -12,11 +12,12 @@ interface PageTitleProps {
   title: string;
   subtitle?: string;
   breadcrumbs?: BreadcrumbItem[];
+  sx?: SxProps<Theme>;
 }
 
-const PageTitle: React.FC<PageTitleProps> = ({ title, subtitle, breadcrumbs }) => {
+const PageTitle: React.FC<PageTitleProps> = ({ title, subtitle, breadcrumbs, sx }) => {
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 4, ...(sx || {}) }}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Breadcrumbs 
           separator={<NavigateNextIcon fontSize="small" />} 

@@ -197,18 +197,51 @@ const Products: React.FC = () => {
 
   const filterDrawer = (
     <Box
-      sx={{ width: 280, p: 3 }}
+      sx={{ 
+        width: 300, 
+        p: 4,
+        height: '100%',
+        background: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,244,1) 100%)',
+        borderLeft: '1px solid rgba(27, 138, 90, 0.1)'
+      }}
       role="presentation"
     >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h6">Filters</Typography>
-        <IconButton onClick={toggleDrawer(false)}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+        <Typography variant="h6" sx={{ 
+          color: '#1B8A5A', 
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center',
+          '&::before': {
+            content: '""',
+            display: 'inline-block',
+            width: 4,
+            height: 20,
+            backgroundColor: '#D32F2F',
+            marginRight: 1.5,
+            borderRadius: 1
+          }
+        }}>Filters</Typography>
+        <IconButton 
+          onClick={toggleDrawer(false)}
+          sx={{ 
+            color: '#D32F2F',
+            '&:hover': {
+              backgroundColor: 'rgba(211, 47, 47, 0.1)'
+            }
+          }}
+        >
           <CloseIcon />
         </IconButton>
       </Box>
-      <Divider sx={{ mb: 3 }} />
+      <Divider sx={{ mb: 3, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
       
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" gutterBottom sx={{ 
+        color: '#1E293B', 
+        fontWeight: 'bold',
+        mb: 2,
+        fontSize: '1rem'
+      }}>
         Categories
       </Typography>
       <FormControl fullWidth size="small" sx={{ mb: 3 }}>
@@ -227,7 +260,12 @@ const Products: React.FC = () => {
         </Select>
       </FormControl>
       
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" gutterBottom sx={{ 
+        color: '#1E293B', 
+        fontWeight: 'bold',
+        mb: 2,
+        fontSize: '1rem'
+      }}>
         Price Range
       </Typography>
       <Box sx={{ px: 1, mb: 3 }}>
@@ -238,6 +276,20 @@ const Products: React.FC = () => {
           min={0}
           max={1000}
           step={10}
+          sx={{
+            color: '#1B8A5A',
+            '& .MuiSlider-thumb': {
+              '&:hover, &.Mui-focusVisible': {
+                boxShadow: '0 0 0 8px rgba(27, 138, 90, 0.16)'
+              },
+              '&.Mui-active': {
+                boxShadow: '0 0 0 12px rgba(27, 138, 90, 0.16)'
+              }
+            },
+            '& .MuiSlider-rail': {
+              backgroundColor: 'rgba(211, 47, 47, 0.2)'
+            }
+          }}
         />
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="body2">${priceRange[0]}</Typography>
@@ -245,7 +297,12 @@ const Products: React.FC = () => {
         </Box>
       </Box>
       
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" gutterBottom sx={{ 
+        color: '#1E293B', 
+        fontWeight: 'bold',
+        mb: 2,
+        fontSize: '1rem'
+      }}>
         Sort By
       </Typography>
       <FormControl fullWidth size="small" sx={{ mb: 3 }}>
@@ -267,7 +324,18 @@ const Products: React.FC = () => {
         variant="outlined" 
         fullWidth 
         onClick={handleClearFilters}
-        sx={{ mt: 2 }}
+        sx={{ 
+          mt: 3,
+          py: 1.2,
+          borderColor: '#D32F2F',
+          color: '#D32F2F',
+          borderRadius: 1.5,
+          fontWeight: 'medium',
+          '&:hover': {
+            borderColor: '#B71C1C',
+            backgroundColor: 'rgba(211, 47, 47, 0.04)'
+          }
+        }}
       >
         Clear All Filters
       </Button>
@@ -280,19 +348,77 @@ const Products: React.FC = () => {
         title="Products" 
         subtitle="Browse our collection of high-quality products"
         breadcrumbs={[{ name: 'Products' }]}
+        sx={{
+          '& .MuiTypography-h4': {
+            color: '#1B8A5A',
+            fontWeight: 'bold',
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: -10,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 80,
+              height: 3,
+              background: 'linear-gradient(90deg, #1B8A5A 0%, #FFFFFF 50%, #D32F2F 100%)',
+              borderRadius: 2
+            }
+          },
+          '& .MuiTypography-subtitle1': {
+            color: '#1E293B',
+            maxWidth: '700px',
+            margin: '0 auto',
+            mt: 3
+          }
+        }}
       />
       
       <GridContainer spacing={3}>
         {/* Filters for desktop */}
         {!isMobile && (
           <GridItem xs={12} md={3}>
-            <Box sx={{ p: 2, border: '1px solid #e0e0e0', borderRadius: 1 }}>
-              <Typography variant="h6" gutterBottom>
+            <Box sx={{ 
+              p: 3, 
+              border: '1px solid rgba(27, 138, 90, 0.2)', 
+              borderRadius: 2,
+              boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+              position: 'relative',
+              overflow: 'hidden',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '3px',
+                background: 'linear-gradient(90deg, #1B8A5A 0%, #FFFFFF 50%, #D32F2F 100%)'
+              }
+            }}>
+              <Typography variant="h6" gutterBottom sx={{ 
+                color: '#1B8A5A', 
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                '&::before': {
+                  content: '""',
+                  display: 'inline-block',
+                  width: 4,
+                  height: 20,
+                  backgroundColor: '#D32F2F',
+                  marginRight: 1.5,
+                  borderRadius: 1
+                }
+              }}>
                 Filters
               </Typography>
-              <Divider sx={{ mb: 2 }} />
+              <Divider sx={{ mb: 3, borderColor: 'rgba(27, 138, 90, 0.1)' }} />
               
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom sx={{ 
+                color: '#1E293B', 
+                fontWeight: 'bold',
+                mb: 1.5
+              }}>
                 Categories
               </Typography>
               <FormControl fullWidth size="small" sx={{ mb: 3 }}>
@@ -311,7 +437,11 @@ const Products: React.FC = () => {
                 </Select>
               </FormControl>
               
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom sx={{ 
+                color: '#1E293B', 
+                fontWeight: 'bold',
+                mb: 1.5
+              }}>
                 Price Range
               </Typography>
               <Box sx={{ px: 1, mb: 3 }}>
@@ -322,6 +452,20 @@ const Products: React.FC = () => {
                   min={0}
                   max={1000}
                   step={10}
+                  sx={{
+                    color: '#1B8A5A',
+                    '& .MuiSlider-thumb': {
+                      '&:hover, &.Mui-focusVisible': {
+                        boxShadow: '0 0 0 8px rgba(27, 138, 90, 0.16)'
+                      },
+                      '&.Mui-active': {
+                        boxShadow: '0 0 0 12px rgba(27, 138, 90, 0.16)'
+                      }
+                    },
+                    '& .MuiSlider-rail': {
+                      backgroundColor: 'rgba(211, 47, 47, 0.2)'
+                    }
+                  }}
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Typography variant="body2">${priceRange[0]}</Typography>
@@ -329,7 +473,11 @@ const Products: React.FC = () => {
                 </Box>
               </Box>
               
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom sx={{ 
+                color: '#1E293B', 
+                fontWeight: 'bold',
+                mb: 1.5
+              }}>
                 Sort By
               </Typography>
               <FormControl fullWidth size="small" sx={{ mb: 3 }}>
@@ -351,6 +499,14 @@ const Products: React.FC = () => {
                 variant="outlined" 
                 fullWidth 
                 onClick={handleClearFilters}
+                sx={{
+                  borderColor: '#D32F2F',
+                  color: '#D32F2F',
+                  '&:hover': {
+                    borderColor: '#B71C1C',
+                    backgroundColor: 'rgba(211, 47, 47, 0.04)'
+                  }
+                }}
               >
                 Clear All Filters
               </Button>
@@ -372,14 +528,25 @@ const Products: React.FC = () => {
             <TextField
               placeholder="Search products..."
               variant="outlined"
-              size="small"
+              fullWidth
               value={searchTerm}
               onChange={handleSearchChange}
-              sx={{ width: isMobile ? '100%' : 300 }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: 1.5,
+                  py: 0.5,
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(27, 138, 90, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1B8A5A',
+                  },
+                }
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon />
+                    <SearchIcon sx={{ color: '#1B8A5A' }} />
                   </InputAdornment>
                 ),
               }}
@@ -388,18 +555,29 @@ const Products: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {isMobile && (
                 <Button
-                  variant="outlined"
                   startIcon={<FilterListIcon />}
                   onClick={toggleDrawer(true)}
-                  fullWidth
+                  variant="outlined"
+                  sx={{ 
+                    display: { xs: 'flex', md: 'none' },
+                    borderColor: '#1B8A5A',
+                    color: '#1B8A5A',
+                    py: 1,
+                    px: 2,
+                    borderRadius: 1.5,
+                    '&:hover': {
+                      borderColor: '#006837',
+                      backgroundColor: 'rgba(27, 138, 90, 0.04)'
+                    }
+                  }}
                 >
                   Filters
                 </Button>
               )}
               
               {!isMobile && (
-                <Typography variant="body2" color="text.secondary">
-                  {filteredProducts.length} products found
+                <Typography variant="body1" sx={{ fontWeight: 500, fontSize: '1.05rem' }}>
+                  {loading ? 'Loading...' : `${filteredProducts.length} products found`}
                 </Typography>
               )}
             </Box>
@@ -407,7 +585,7 @@ const Products: React.FC = () => {
           
           {/* Active filters */}
           {(searchTerm || selectedCategory || priceRange[0] > 0 || priceRange[1] < 1000) && (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 4 }}>
               <Typography variant="body2" sx={{ mr: 1, display: 'flex', alignItems: 'center' }}>
                 Active Filters:
               </Typography>
@@ -421,7 +599,25 @@ const Products: React.FC = () => {
                     newParams.delete('search');
                     setSearchParams(newParams);
                   }} 
-                  size="small" 
+                  sx={{
+                    backgroundColor: 'rgba(27, 138, 90, 0.1)',
+                    borderRadius: '16px',
+                    py: 0.5,
+                    height: 'auto',
+                    '& .MuiChip-label': {
+                      color: '#1B8A5A',
+                      px: 1.5,
+                      py: 0.5,
+                      fontWeight: 500
+                    },
+                    '& .MuiChip-deleteIcon': {
+                      color: '#D32F2F',
+                      marginRight: 0.5,
+                      '&:hover': {
+                        color: '#B71C1C'
+                      }
+                    }
+                  }}
                 />
               )}
               
@@ -434,7 +630,25 @@ const Products: React.FC = () => {
                     newParams.delete('category');
                     setSearchParams(newParams);
                   }} 
-                  size="small" 
+                  sx={{
+                    backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                    borderRadius: '16px',
+                    py: 0.5,
+                    height: 'auto',
+                    '& .MuiChip-label': {
+                      color: '#D32F2F',
+                      px: 1.5,
+                      py: 0.5,
+                      fontWeight: 500
+                    },
+                    '& .MuiChip-deleteIcon': {
+                      color: '#D32F2F',
+                      marginRight: 0.5,
+                      '&:hover': {
+                        color: '#B71C1C'
+                      }
+                    }
+                  }}
                 />
               )}
               
@@ -442,7 +656,25 @@ const Products: React.FC = () => {
                 <Chip 
                   label={`Price: $${priceRange[0]} - $${priceRange[1]}`} 
                   onDelete={() => setPriceRange([0, 1000])} 
-                  size="small" 
+                  sx={{
+                    backgroundColor: 'rgba(27, 138, 90, 0.1)',
+                    borderRadius: '16px',
+                    py: 0.5,
+                    height: 'auto',
+                    '& .MuiChip-label': {
+                      color: '#1B8A5A',
+                      px: 1.5,
+                      py: 0.5,
+                      fontWeight: 500
+                    },
+                    '& .MuiChip-deleteIcon': {
+                      color: '#D32F2F',
+                      marginRight: 0.5,
+                      '&:hover': {
+                        color: '#B71C1C'
+                      }
+                    }
+                  }}
                 />
               )}
             </Box>
@@ -469,12 +701,32 @@ const Products: React.FC = () => {
               
               {/* Pagination */}
               {totalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6, mb: 3 }}>
                   <Pagination 
                     count={totalPages} 
                     page={page} 
-                    onChange={handlePageChange} 
-                    color="primary" 
+                    onChange={handlePageChange}
+                    color="primary"
+                    size={isMobile ? "medium" : "large"}
+                    sx={{
+                      '& .MuiPaginationItem-root': {
+                        color: '#1E293B',
+                        margin: '0 4px',
+                        minWidth: '40px',
+                        height: '40px',
+                        '&.Mui-selected': {
+                          backgroundColor: '#1B8A5A',
+                          color: '#FFFFFF',
+                          fontWeight: 'bold',
+                          '&:hover': {
+                            backgroundColor: '#006837',
+                          }
+                        },
+                        '&:hover': {
+                          backgroundColor: 'rgba(27, 138, 90, 0.1)',
+                        }
+                      }
+                    }}
                   />
                 </Box>
               )}
