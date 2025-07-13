@@ -74,7 +74,7 @@ const Header: React.FC = () => {
 
   const authMenuItems = isAuthenticated
     ? [
-        { text: 'My Orders', icon: <ShoppingCartIcon />, path: '/orders' },
+        ...(isAdmin ? [] : [{ text: 'My Orders', icon: <ShoppingCartIcon />, path: '/orders' }]),
         ...(isAdmin ? [{ text: 'Dashboard', icon: <Dashboard />, path: '/admin' }] : []),
         { text: 'Logout', icon: <ExitToApp />, onClick: handleLogout }
       ]
@@ -273,9 +273,11 @@ const Header: React.FC = () => {
                   <MenuItem onClick={() => { handleMenuClose(); navigate('/profile'); }}>
                     Profile
                   </MenuItem>
-                  <MenuItem onClick={() => { handleMenuClose(); navigate('/orders'); }}>
-                    My Orders
-                  </MenuItem>
+                  {!isAdmin && (
+                    <MenuItem onClick={() => { handleMenuClose(); navigate('/orders'); }}>
+                      My Orders
+                    </MenuItem>
+                  )}
                   {isAdmin && (
                     <MenuItem onClick={() => { handleMenuClose(); navigate('/admin'); }}>
                       Admin Dashboard
