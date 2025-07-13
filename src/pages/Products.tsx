@@ -729,19 +729,20 @@ const Products: React.FC = () => {
           )}
           
           {/* Products grid */}
+          <Box sx={{ px: { xs: 3, sm: 4, md: 6 }, py: 2 }}>
           {loading ? (
-            <GridContainer spacing={4} sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+            <GridContainer spacing={6}>
               {[...Array(8)].map((_, index) => (
-                <GridItem xs={12} sm={6} md={4} lg={3} key={index} sx={{ p: 1.5 }}>
+                <GridItem xs={12} sm={6} md={4} lg={3} key={index} sx={{ p: 2.5, mb: 2 }}>
                   <ProductCardSkeleton />
                 </GridItem>
               ))}
             </GridContainer>
           ) : paginatedProducts.length > 0 ? (
             <>
-              <GridContainer spacing={4} sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+              <GridContainer spacing={6}>
                 {paginatedProducts.map((product) => (
-                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id} sx={{ p: 1.5 }}>
+                  <GridItem xs={12} sm={6} md={4} lg={3} key={product.id} sx={{ p: 2.5, mb: 2 }}>
                     <ProductCard product={product} />
                   </GridItem>
                 ))}
@@ -785,6 +786,7 @@ const Products: React.FC = () => {
               No products found matching your criteria.
             </Typography>
           )}
+          </Box>
         </GridItem>
       </GridContainer>
       
